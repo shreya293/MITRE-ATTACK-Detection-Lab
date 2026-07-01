@@ -85,7 +85,7 @@ Set up the complete log pipeline from scratch: install Splunk Enterprise on the 
 **Screenshot 1 — Splunk Enterprise login page at 127.0.0.1:8000**
 > Splunk Web launched successfully after installation. The login page confirms Splunk Enterprise is running as a service on the host machine on port 8000.
 
-![Screenshot1](Day1-Screenshots/Screenshot1.png)
+![Screenshot1](/Day1-Screenshots/Screenshot1.png)
 
 ---
 
