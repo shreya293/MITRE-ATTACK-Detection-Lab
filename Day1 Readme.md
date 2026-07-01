@@ -92,14 +92,14 @@ Set up the complete log pipeline from scratch: install Splunk Enterprise on the 
 **Screenshot 2 — Splunk Home Page after login**
 > The Splunk home screen showing Search & Reporting, Dashboards, Alerts, and Reports — the main interface we will use throughout this project to search logs and build detections.
 
-![Screenshot2](day%20one%20screenshot/Screenshot2.png)
+![Screenshot2](/Day1-Screenshots/Screenshot2.png)
 
 ---
 
 **Screenshot 3 — Port 9997 configured as receiving port**
 > Settings → Forwarding and Receiving → Configure Receiving showing port 9997 enabled and listening for incoming log data from the Universal Forwarder on the Windows 11 VM.
 
-![Screenshot3](day%20one%20screenshot/Screenshot3.png)
+![Screenshot3](/Day1-Screenshots/Screenshot3.png)
 
 </details>
 
@@ -130,28 +130,28 @@ Sysmon64.exe -i sysmonconfig.xml
 **Screenshot 15 — Sysmon official Microsoft Sysinternals download page**
 > The official Microsoft page for Sysmon (System Monitor), written by Mark Russinovich and Thomas Garnier. Downloaded the 4.6 MB ZIP file from here.
 
-![Screenshot15](day%20one%20screenshot/Screenshot15.png)
+![Screenshot15](/Day1-Screenshots/Screenshot15.png)
 
 ---
 
 **Screenshot 4 — C:\Sysmon folder contents**
 > The `C:\Sysmon` folder containing all required files: `Sysmon64.exe` (main executable for 64-bit systems), `Sysmon.exe` (32-bit), `Sysmon64a.exe`, `Eula.txt`, and `sysmonconfig.xml` (the Olaf Hartong detection ruleset).
 
-![Screenshot4](day%20one%20screenshot/Screenshot4.png)
+![Screenshot4](/Day1-Screenshots/Screenshot4.png)
 
 ---
 
 **Screenshot 5 — Command Prompt showing Sysmon installation**
 > Administrator Command Prompt showing `cd C:\Sysmon` navigation and `Sysmon64.exe -i sysmonconfig.xml` installation command. The `-i` flag means "install with this configuration file." Output confirms "Sysmon64 started" — Sysmon is now running as a Windows service.
 
-![Screenshot5](day%20one%20screenshot/Screenshot5.png)
+![Screenshot5](/Day1-Screenshots/Screenshot5.png)
 
 ---
 
 **Screenshot 6 — services.msc showing Sysmon64 running**
 > Windows Services Manager (`services.msc`) confirming that Sysmon64 is installed as a Windows service with status "Running." This means Sysmon survives reboots and continuously monitors the endpoint without manual intervention.
 
-![Screenshot6](day%20one%20screenshot/Screenshot6.png)
+![Screenshot6](/Day1-Screenshots/Screenshot6.png)
 
 </details>
 
@@ -193,42 +193,42 @@ server = 192.168.119.1:9997
 **Screenshot 16 — Splunk Universal Forwarder download page**
 > Official Splunk download page for Universal Forwarder 10.4.1. Selected the 64-bit Windows .msi (150.93 MB) which supports Windows 10, Windows 11, and Windows Server editions.
 
-![Screenshot16](day%20one%20screenshot/Screenshot16.png)
+![Screenshot16](/Day1-Screenshots/Screenshot16.png)
 
 ---
 
 **Screenshot 7 — SplunkUniversalForwarder local config folder**
 > File Explorer showing `C:\Program Files\SplunkUniversalForwarder\etc\system\local` containing both manually created configuration files: `inputs.conf` (1 KB) and `outputs.conf` (1 KB). These two files are the core of the Forwarder's behaviour.
 
-![Screenshot7](day%20one%20screenshot/Screenshot7.png)
+![Screenshot7](/Day1-Screenshots/Screenshot7.png)
 
 ---
 
 **Screenshot 8 — inputs.conf content in Notepad**
 > The `inputs.conf` file telling the Universal Forwarder to collect logs from the Sysmon operational channel (`Microsoft-Windows-Sysmon/Operational`), send them to the `main` index in Splunk, and keep collection enabled (`disabled = false`).
 
-![Screenshot8](day%20one%20screenshot/Screenshot8.png)
+![Screenshot8](/Day1-Screenshots/Screenshot8.png)
 
 ---
 
 **Screenshot 9 — outputs.conf content in Notepad**
 > The `outputs.conf` file telling the Universal Forwarder to send all collected logs to `192.168.119.1:9997` — the host machine's VMnet8 IP address on Splunk's receiving port. Without this file the Forwarder has no destination and sends nothing.
 
-![Screenshot9](day%20one%20screenshot/Screenshot9.png)
+![Screenshot9](/Day1-Screenshots/Screenshot9.png)
 
 ---
 
 **Screenshot 10 — Windows Defender Firewall inbound rule**
 > Windows Defender Firewall with Advanced Security showing the manually created inbound rule "Splunk Receiving 9997" — allows TCP traffic on port 9997 from any address. This rule was necessary because the host firewall was silently blocking incoming connections from the VM, causing zero events in Splunk.
 
-![Screenshot10](day%20one%20screenshot/Screenshot10.png)
+![Screenshot10](/Day1-Screenshots/Screenshot10.png)
 
 ---
 
 **Screenshot 11 — PowerShell TcpTestSucceeded: True**
 > PowerShell `Test-NetConnection` result confirming the Windows 11 VM (source: `192.168.119.140`, Interface: Ethernet 1 / NAT adapter) can successfully reach the host machine at `192.168.119.1` on port 9997. This ruled out network issues and confirmed the problem was configuration-only.
 
-![Screenshot11](day%20one%20screenshot/Screenshot11.png)
+![Screenshot11](/Day1-Screenshots/Screenshot11.png)
 
 </details>
 
@@ -253,21 +253,21 @@ server = 192.168.119.1:9997
 **Screenshot 12 — Splunk showing 3,700 Sysmon events**
 > Splunk Search & Reporting showing 3,700 events returned for the Sysmon sourcetype query over the last 24 hours. The timeline bar chart confirms events are arriving continuously. This is the final proof that the entire pipeline (Sysmon → Forwarder → Splunk) is working correctly.
 
-![Screenshot12](day%20one%20screenshot/Screenshot12.png)
+![Screenshot12](/Day1-Screenshots/Screenshot12.png)
 
 ---
 
 **Screenshot 13 — Expanded Sysmon event showing all fields**
 > A single Sysmon event expanded in Splunk showing all parsed fields: LogName, EventCode, EventType, ComputerName, and detailed process/network information. These fields are what we will search and filter in our SPL detection rules from Day 2 onwards.
 
-![Screenshot13](day%20one%20screenshot/Screenshot13.png)
+![Screenshot13](/Day1-Screenshots/Screenshot13.png)
 
 ---
 
 **Screenshot 14 — Splunk Interesting Fields panel**
 > The left sidebar in Splunk showing automatically extracted "Interesting Fields" from the Sysmon events: ComputerName (1 value), EventCode (14 unique values), Image (98 unique process images), CreationUtcTime (100+ values). These fields confirm Splunk has correctly parsed the Sysmon log structure and is ready for detection queries.
 
-![Screenshot14](day%20one%20screenshot/Screenshot14.png)
+![Screenshot14](/Day1-Screenshots/Screenshot14.png)
 
 </details>
 
