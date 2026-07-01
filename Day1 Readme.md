@@ -138,7 +138,7 @@ Sysmon64.exe -i sysmonconfig.xml
 **Screenshot 4 — C:\Sysmon folder contents**
 > The `C:\Sysmon` folder containing all required files: `Sysmon64.exe` (main executable for 64-bit systems), `Sysmon.exe` (32-bit), `Sysmon64a.exe`, `Eula.txt`, and `sysmonconfig.xml` (the Olaf Hartong detection ruleset).
 
-![Screenshot4](/Day1-Screenshots/Screenshot4.png)
+![Screenshot4](/Day1-Screenshots/Screenshot4.jpeg)
 
 ---
 
