@@ -14,7 +14,8 @@ A hands-on home lab that simulates real-world cyberattacks using **Atomic Red Te
 ## 🏗️ Lab Architecture
 
 ┌─────────────────────────────────────┐         ┌─────────────────────────────────────┐
-│         Windows 11 VM               │         │       Host Machine (Laptop)          │
+│      
+          Windows 11 VM               │         │       Host Machine (Laptop)          │
 │                                     │         │                                     │
 │  ┌──────────┐     ┌──────────────┐  │  Port   │  ┌─────────────────────────────┐   │
 │  │  Sysmon  │────▶│  Universal   │  │  9997   │  │     Splunk Enterprise        │   │
