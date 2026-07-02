@@ -60,7 +60,7 @@ This is the broadest possible Sysmon search — it returns every single event Sy
 **Screenshot 1 — 4,159 total Sysmon events in Splunk**
 > Splunk Search & Reporting showing 4,159 total events returned for the broad Sysmon index query. The count increased from Day 1's 3,700 because Sysmon continued recording overnight while the VM remained powered on — confirming the pipeline is running continuously and automatically without any manual intervention.
 
-![Screenshot1](day%202%20screenshots/Screenshot1.png)
+![Screenshot1](Day2-Screenshots/Screenshot1.png)
 
 </details>
 
@@ -118,14 +118,14 @@ Filters Sysmon logs to show only Event ID 1 — every program that was launched 
 **Screenshot 2 — Image field popup showing top 10 processes**
 > Splunk's Image field analysis showing 23 unique processes recorded across all Event ID 1 events. The top process is `svchost.exe` with 68 occurrences (41.4%) — completely normal as it is the primary Windows service host. All top processes originate from `C:\Windows\System32` — a strong indicator of legitimacy since malware commonly runs from user directories like Downloads or Temp.
 
-![Screenshot2](day%202%20screenshots/Screenshot2.png)
+![Screenshot2](Day2-Screenshots/Screenshot2.png)
 
 ---
 
 **Screenshot 3 — Fully expanded Event ID 1 event**
 > A single Event ID 1 event expanded in Splunk showing all key fields: Image (WmiPrvSE.exe), ParentImage (svchost.exe), CommandLine (-secured -embedding arguments), and User (NT AUTHORITY\SYSTEM). Reading these 4 fields together confirms this is legitimate Windows background activity — normal parent-child relationship, normal arguments, system-level user.
 
-![Screenshot3](day%202%20screenshots/Screenshot3.png)
+![Screenshot3](Day2-Screenshots/Screenshot3.png)
 
 </details>
 
@@ -247,14 +247,14 @@ Malware on a compromised machine contacts its attacker's server at regular inter
 **Screenshot 5 — Event ID 3 DestinationIp field showing top IPs**
 > Network connection events showing top destination IPs. The top external IP (52.123.119.14) was immediately flagged for investigation because it is not a private/internal IP address. In a SOC environment, any process making unexpected external connections is investigated before being cleared.
 
-![Screenshot5](day%202%20screenshots/Screenshot5.png)
+![Screenshot5](Day2-Screenshots/Screenshot5.png)
 
 ---
 
 **Screenshot 6 — Filtered search for 52.123.119.14 showing Defender**
 > Targeted search for the external IP showing 5 connections all made by MpDefenderCoreService.exe (Microsoft Defender) to port 443 (HTTPS). This confirms the connection is Microsoft Defender's cloud protection and update service — a false positive. Documenting why something is NOT malicious is equally important SOC work as finding real threats.
 
-![Screenshot6](day%202%20screenshots/Screenshot6.png)
+![Screenshot6](Day2-Screenshots/Screenshot6.png)
 
 </details>
 
@@ -306,7 +306,7 @@ Event ID 13 records every time a value is written to the Windows registry. The W
 **Screenshot 7 — Event ID 13 TargetObject field showing top registry keys**
 > Registry modification events showing 1,382 total events. All top modified keys belong to the BAM (Background Activity Moderator) hive — a Windows-internal tracking system that records program execution history. The three most modified entries correspond directly to programs we used during Day 1 setup: conhost.exe (Command Prompt sessions), cmd.exe (net stop/start commands), and splunkd.exe (Universal Forwarder running continuously). All confirmed legitimate.
 
-![Screenshot7](day%202%20screenshots/Screenshot7.png)
+![Screenshot7](Day2-Screenshots/Screenshot7.png)
 
 </details>
 
@@ -365,7 +365,7 @@ Attackers encode stolen data or C2 commands inside DNS query strings themselves 
 **Screenshot 8 — Event ID 22 QueryName field showing top 5 domains**
 > DNS query events showing 56 total lookups with top 5 domains analyzed. All domains confirmed legitimate: Microsoft CDN (MSN images), Windows WPAD auto-discovery, and the VM's own Active Directory hostname resolution. Zero suspicious domains detected. In a real SOC environment, this baseline of normal DNS activity is documented so that any new or unusual domain query stands out immediately as an anomaly.
 
-![Screenshot8](day%202%20screenshots/Screenshot8.png)
+![Screenshot8](Day2-Screenshots/Screenshot8.png)
 
 </details>
 
@@ -390,7 +390,7 @@ All 5 searches were saved as permanent named reports in Splunk for reuse through
 **Screenshot 9 — Splunk Reports page showing all 5 saved Day 2 reports**
 > Splunk Reports section showing all 5 named detection searches saved from Day 2 analysis. These reports serve as reusable building blocks — in Day 4 and Day 5 they will be converted into active Splunk Alerts that automatically trigger when attack patterns are detected in incoming Sysmon data.
 
-![Screenshot9](day%202%20screenshots/Screenshot9.png)
+![Screenshot9](Day2-Screenshots/Screenshot9.png)
 
 </details>
 
