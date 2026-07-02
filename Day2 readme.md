@@ -248,6 +248,8 @@ Malware on a compromised machine contacts its attacker's server at regular inter
 > Network connection events showing top destination IPs. The top external IP (52.123.119.14) was immediately flagged for investigation because it is not a private/internal IP address. In a SOC environment, any process making unexpected external connections is investigated before being cleared.
 
 ![Screenshot5](Day2-Screenshots/Screenshot5.png)
+<br>
+![Screenshot5](Day2-Screenshots/Screenshot5.1.png)
 
 ---
 
