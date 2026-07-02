@@ -13,21 +13,23 @@ A hands-on home lab that simulates real-world cyberattacks using **Atomic Red Te
 
 ## 🏗️ Lab Architecture
 
-┌─────────────────────────────┐         ┌──────────────────────────────┐
-│     Windows 11 VM           │         │     Host Machine (Laptop)     │
-│                             │         │                               │
-│  ┌─────────┐  ┌──────────┐  │ Port    │  ┌────────────────────────┐  │
-│  │ Sysmon  │→ │Universal │  │ 9997    │  │   Splunk Enterprise    │  │
-│  │(Monitor)│  │Forwarder │──┼────────▶│  │  (SIEM / Dashboard)   │  │
-│  └─────────┘  └──────────┘  │         │  └────────────────────────┘  │
-│                             │         │                               │
-│  ┌──────────────────────┐   │         └──────────────────────────────┘
-│  │  Atomic Red Team     │   │
-│  │ (Attack Simulator)   │   │
-│  └──────────────────────┘   │
-└─────────────────────────────┘
-
----
+ 
+```mermaid
+flowchart LR
+    subgraph VM["🖥️ Windows 11 VM"]
+        direction TB
+        S["🔍 Sysmon\nEndpoint Monitor"]
+        UF["📦 Universal Forwarder\nLog Courier"]
+        ART["⚔️ Atomic Red Team\nAttack Simulator"]
+        S -->|"Sysmon logs"| UF
+    end
+ 
+    subgraph HOST["💻 Host Machine - Laptop"]
+        SPL["📊 Splunk Enterprise\nSIEM and Dashboard"]
+    end
+ 
+    UF -->|"TCP Port 9997"| SPL
+```
 
 ## 🛠️ Tools & Technologies
 
