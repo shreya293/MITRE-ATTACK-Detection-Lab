@@ -50,7 +50,7 @@ flowchart LR
 | Day | Topic | Status |
 |-----|-------|--------|
 | Day 1 | Splunk + Sysmon + Universal Forwarder Setup | ✅ Complete |
-| Day 2 | SPL Basics + Sysmon Event ID Analysis | 🔄 In Progress |
+| Day 2 | SPL Basics + Sysmon Event ID Analysis | ✅ Complete |
 | Day 3 | Atomic Red Team Installation + Attack Simulations | ⏳ Pending |
 | Day 4 | SPL Detection Rules — Part 1 | ⏳ Pending |
 | Day 5 | SPL Detection Rules — Part 2 | ⏳ Pending |
