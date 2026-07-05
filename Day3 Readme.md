@@ -68,7 +68,7 @@ During testing, Atomic Red Team Test Numbers that use external tools (Mimikatz, 
 **Screenshot 1 — C:\AtomicRedTeam\atomics folder**
 > File Explorer showing the `C:\AtomicRedTeam\atomics` folder containing all downloaded MITRE ATT&CK technique simulation folders. Each folder is named by its technique ID (T1001, T1002, T1003 etc.) and contains YAML definition files and PowerShell scripts for that specific attack technique. This confirms Atomic Red Team installed successfully with all atomics downloaded.
 
-![Screenshot1](day%203%20screenshots/Screenshot1.png)
+![Screenshot1](Day3-Screenshots/Screenshot1.png)
 
 </details>
 
@@ -137,14 +137,14 @@ index=main sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCo
 **Screenshot 2 — PowerShell showing T1082 execution complete**
 > Administrator PowerShell window showing "Done executing test: T1082-1 System Information Discovery" — confirming the atomic test ran successfully. The green text confirms completion without errors. The simulation ran whoami, systeminfo, and reg query commands exactly as a real attacker would immediately after compromising a machine.
 
-![Screenshot2](day%203%20screenshots/Screenshot2.png)
+![Screenshot2](Day3-Screenshots/Screenshot2.png)
 
 ---
 
 **Screenshot 3 — Splunk catching all 3 T1082 attack commands**
 > Splunk search results showing 3 events detected for the T1082 simulation: `whoami.exe`, `systeminfo`, and `cmd.exe /c systeminfo & reg query HKLM\SYSTEM\CurrentControlSet\Services\Disk\Enum`. All three were captured by Sysmon EventCode 1 (Process Creation) with exact CommandLine values preserved — giving a SOC analyst complete forensic evidence of what the attacker ran, when, and from which parent process.
 
-![Screenshot3](day%203%20screenshots/Screenshot3.png)
+![Screenshot3](Day3-Screenshots/Screenshot3.png)
 
 </details>
 
@@ -220,7 +220,7 @@ In a real SOC, this event would be classified as **Priority 1 — Immediate Inve
 **Screenshot 4 — Splunk catching encoded PowerShell execution**
 > Splunk search result showing the T1059.001 detection event. The CommandLine field shows `powershell.exe -ExecutionPolicy Bypass -EncodedCommand SQBuAHYAbwBr...` — three simultaneous red flags in a single command line. This event would trigger an immediate Priority 1 alert in any real SOC environment. The combination of ExecutionPolicy Bypass + EncodedCommand is one of the highest-confidence malicious indicators in Windows endpoint detection.
 
-![Screenshot4](day%203%20screenshots/Screenshot4.png)
+![Screenshot4](Day3-Screenshots/Screenshot4.png)
 
 </details>
 
@@ -305,14 +305,14 @@ Persistence mechanisms are what turn a temporary compromise into a long-term bre
 **Screenshot 5 — PowerShell showing T1547.001 execution complete**
 > Administrator PowerShell window showing "Done executing test: T1547.001" — confirming the persistence simulation ran successfully without Defender interference (registry writes are not blocked by Defender, unlike executable tools). This is significant: registry-based persistence is one of the hardest techniques to prevent because Windows itself needs to write to these keys for legitimate software.
 
-![Screenshot5](day%203%20screenshots/Screenshot5.png)
+![Screenshot5](Day3-Screenshots/Screenshot5.png)
 
 ---
 
 **Screenshot 6 — Splunk catching registry persistence key**
 > Splunk search showing EventCode 13 (Registry Value Set) with TargetObject field displaying `HKU\S-1-5-21-...\Software\Microsoft\Windows\CurrentVersion\Run\Atomic Red Team` — the exact auto-start persistence key written by the simulation. This is one of the highest-value detections in Windows security: catching the moment an attacker establishes persistence means you can respond before the malware has had a chance to execute even once on reboot.
 
-![Screenshot6](day%203%20screenshots/Screenshot6.png)
+![Screenshot6](Day3-Screenshots/Screenshot6.png)
 
 </details>
 
