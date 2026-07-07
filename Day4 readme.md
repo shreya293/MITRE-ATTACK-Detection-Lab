@@ -95,14 +95,14 @@ Every single event shows `powershell.exe` as the ParentImage — meaning PowerSh
 **Screenshot 2 — T1082 detection rule returning 8 events**
 > SPL detection query returning 8 events across 7 days showing all T1082 system discovery commands captured. The table format clearly shows Time, ComputerName, User, Image (process that ran), ParentImage (what launched it), and CommandLine (exact command executed). Every event shows powershell.exe as the parent — the definitive attacker pattern distinguishing this from legitimate admin activity.
 
-![Screenshot2](day%204%20screenshots/Screenshot2.png)
+![Screenshot2](Day4-Screenshots/Screenshot2.png)
 
 ---
 
 **Screenshot 4 — T1082 Alert configuration**
 > Splunk Alert configuration for T1082 showing real-time trigger, High severity, and Add to Triggered Alerts action. This alert runs the detection query continuously — the moment any process matching the discovery command pattern appears in Sysmon logs, the alert fires automatically without any analyst needing to manually search.
 
-![Screenshot4](day%204%20screenshots/Screenshot4.png)
+![Screenshot4](Day4-Screenshots/Screenshot4.png)
 
 </details>
 
@@ -192,14 +192,14 @@ The combination of `-ExecutionPolicy Bypass` AND `-EncodedCommand` together is o
 **Screenshot 3 — T1059.001 detection rule returning 2 encoded PowerShell events**
 > SPL detection query returning 2 events showing both encoded PowerShell executions from Day 3 simulations. The CommandLine column shows the full malicious command including -ExecutionPolicy Bypass, -EncodedCommand flags, and the Base64 encoded payload string. These three elements together in a single CommandLine represent one of the highest-confidence malicious indicators in Windows endpoint security.
 
-![Screenshot3](day%204%20screenshots/Screenshot3.png)
+![Screenshot3](Day4-Screenshots/Screenshot3.png)
 
 ---
 
 **Screenshot 5 — T1059.001 Alert configuration**
 > Splunk Alert configuration for T1059.001 showing Critical severity — the highest level, reserved for the most dangerous and high-confidence attack patterns. Real-time trigger ensures this alert fires the instant any PowerShell process matching the encoded command pattern appears, giving the SOC team the earliest possible warning before the encoded payload can execute its full attack chain.
 
-![Screenshot5](day%204%20screenshots/Screenshot5.png)
+![Screenshot5](Day4-Screenshots/Screenshot5.png)
 
 </details>
 
@@ -272,7 +272,7 @@ Persistence is what separates a temporary compromise from a long-term breach. An
 **Screenshot 6 — T1547.001 Alert configuration**
 > Splunk Alert configuration for T1547.001 Registry Persistence showing Critical severity and real-time trigger. This alert monitors the most critical Windows persistence locations continuously — any write to CurrentVersion\Run, CurrentVersion\RunOnce, or Winlogon registry keys by a non-installer process will immediately fire this alert, giving the SOC team the opportunity to respond before the persisted malware executes even once.
 
-![Screenshot6](day%204%20screenshots/Screenshot6.png)
+![Screenshot6](Day4-Screenshots/Screenshot6.png)
 
 </details>
 
@@ -287,7 +287,7 @@ Persistence is what separates a temporary compromise from a long-term breach. An
 **Screenshot 1 — Splunk Alerts page showing all 3 active detection rules**
 > Splunk Alerts page showing all 3 automated detection rules enabled and running in real-time. Each alert is configured with appropriate severity (High for T1082, Critical for T1059.001 and T1547.001) and will fire automatically the moment a matching attack pattern appears in incoming Sysmon data — no human intervention required. This is the core deliverable of Day 4 and represents a functioning automated threat detection system.
 
-![Screenshot1](Day4_Screenshots/Screenshot1.png)
+![Screenshot1](Day4-Screenshots/Screenshot1.png)
 
 </details>
 
