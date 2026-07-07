@@ -51,9 +51,9 @@ flowchart LR
 |-----|-------|--------|
 | Day 1 | Splunk + Sysmon + Universal Forwarder Setup | ✅ Complete |
 | Day 2 | SPL Basics + Sysmon Event ID Analysis | ✅ Complete |
-| Day 3 | Atomic Red Team Installation + Attack Simulations | ⏳ Pending |
-| Day 4 | SPL Detection Rules — Part 1 | ⏳ Pending |
-| Day 5 | SPL Detection Rules — Part 2 | ⏳ Pending |
+| Day 3 | Atomic Red Team Installation + Attack Simulations | ✅ Complete |
+| Day 4 | SPL Detection Rules — Part 1 | ✅ Complete |
+| Day 5 | SPL Detection Rules — Part 2 | ✅ Complete |
 | Day 6 | Splunk Threat Detection Dashboard | ⏳ Pending |
 | Day 7 | ATT&CK Coverage Matrix + Final Report | ⏳ Pending |
 
