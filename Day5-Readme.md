@@ -131,7 +131,7 @@ All 3 events show `powershell.exe` as the ParentImage — confirming this was sc
 **Screenshot 2 — Splunk catching 3 scheduled task creation events**
 > SPL detection query returning 3 events showing both scheduled tasks created by the T1053.005 simulation. The CommandLine column shows the complete schtasks commands including task names (T1053_005_OnLogon, T1053_005_OnStartup), trigger types (onlogon, onstart), privilege level (/ru system), and the action to execute. ParentImage shows powershell.exe for all events — confirming script-based attack execution rather than legitimate admin activity.
 
-![Screenshot2](day%205%20screenshots/Screenshot2.png)
+![Screenshot2](Day5-Screenshot/Screenshot2.png)
 
 ---
 
