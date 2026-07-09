@@ -138,7 +138,7 @@ All 3 events show `powershell.exe` as the ParentImage — confirming this was sc
 **Screenshot 6 — PowerShell showing T1053.005 execution complete**
 > Administrator PowerShell showing successful completion of T1053.005 simulation with green SUCCESS messages confirming both scheduled tasks were created: "The scheduled task T1053_005_OnLogon has successfully been created" and "The scheduled task T1053_005_OnStartup has successfully been created." This confirms the persistence mechanism was fully established before Sysmon and Splunk captured the evidence.
 
-![Screenshot6](day%205%20screenshots/Screenshot6.png)
+![Screenshot6](Day5-Screenshot/Screenshot6.png)
 
 </details>
 
@@ -233,7 +233,7 @@ Sysmon's EventCode 8 specifically catches Stage 3 — the CreateRemoteThread cal
 **Screenshot 3 — Splunk catching process injection EventCode 8**
 > SPL detection query returning 1 EventCode 8 (CreateRemoteThread) event showing PowerShell as the SourceImage attempting to inject into an unknown target process at memory address 0x00007FF692C35500. The `<unknown process>` TargetImage is a critical indicator — legitimate Windows operations always have identifiable target processes. This event would be classified as Priority 1 in any SOC environment regardless of whether the final payload was blocked by Defender.
 
-![Screenshot3](day%205%20screenshots/Screenshot3.png)
+![Screenshot3](Day5-Screenshot/Screenshot3.png)
 
 </details>
 
@@ -322,7 +322,7 @@ T1087.001 is almost never the final goal — it's a stepping stone. The informat
 **Screenshot 4 — Splunk catching 3 account discovery events**
 > SPL detection query returning 3 events showing account discovery commands executed during the manual T1087.001 simulation. All three events show whoami.exe as the Image with powershell.exe as the ParentImage — the definitive attacker pattern of scripted account enumeration. The third event shows whoami.exe /groups — the most critical command, revealing whether the attacker has administrator privileges and what security groups they can leverage for further attack progression.
 
-![Screenshot4](day%205%20screenshots/Screenshot4.png)
+![Screenshot4](Day5-Screenshot/Screenshot4.png)
 
 </details>
 
@@ -426,7 +426,7 @@ This progression is exactly what every major data breach investigation documents
 **Screenshot 5 — Splunk catching file and directory discovery event**
 > SPL detection query returning 1 event showing the complete T1083 file discovery operation captured in a single Sysmon EventCode 1 event. The CommandLine column shows the full chained command including recursive dir commands across C drive, Program Files, user profiles, and AppData — all redirected to a temp file using >> operator. The output redirection to %temp%\T1083Test1.txt is the definitive pre-exfiltration indicator, showing the attacker is staging file inventory data for theft.
 
-![Screenshot5](day%205%20screenshots/Screenshot5.png)
+![Screenshot5](Day5-Screenshot/Screenshot5.png)
 
 </details>
 
@@ -441,7 +441,7 @@ This progression is exactly what every major data breach investigation documents
 **Screenshot 1 — Splunk Alerts page showing all 7 active detection rules**
 > Splunk Alerts page showing the complete detection library built across Days 4 and 5 — 7 automated real-time alerts covering the full attacker kill chain from execution through discovery. Each alert runs continuously in the background, monitoring all incoming Sysmon events and firing automatically the moment a matching attack pattern appears. This is a functioning automated threat detection system equivalent to what enterprise SOC teams deploy across thousands of endpoints.
 
-![Screenshot1](day%205%20screenshots/Screenshot1.png)
+![Screenshot1](Day5-Screenshot/Screenshot1.png)
 
 </details>
 
