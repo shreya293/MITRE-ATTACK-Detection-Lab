@@ -77,21 +77,21 @@ Running attack simulations immediately before screenshotting the dashboard ensur
 **Screenshot 6 — PowerShell: T1082 System Discovery simulation**
 > Administrator PowerShell showing successful execution of T1082-1 System Information Discovery atomic test. The "Done executing test" confirmation proves the simulation ran successfully and generated the whoami, systeminfo, and reg query events that appear in the dashboard's technique frequency panel and recent events table.
 
-![Screenshot6](day%206%20screenshots/Screenshot6.png)
+![Screenshot6](Day6-Scrrenshots/Screenshot6.png)
 
 ---
 
 **Screenshot 7 — PowerShell: T1053.005 Scheduled Task simulation**
 > Administrator PowerShell showing T1053.005 execution with both SUCCESS messages confirming scheduled task creation — T1053_005_OnLogon and T1053_005_OnStartup. These are the events visible in the dashboard's attack timeline as spikes and in the recent events table as schtasks commands. The dual task creation demonstrates the attacker redundancy pattern that makes scheduled task persistence so dangerous.
 
-![Screenshot7](day%206%20screenshots/Screenshot7.png)
+![Screenshot7](Day6-Scrrenshots/Screenshot7.png)
 
 ---
 
 **Screenshot 8 — PowerShell: T1059.001 Encoded PowerShell simulation**
 > PowerShell showing the manual T1059.001 simulation using locally generated Base64 encoding to avoid copy-paste corruption. The output `ATT&CK T1059 Detection Test` confirms the encoded command executed successfully — and Sysmon EventCode 1 captured the -ExecutionPolicy Bypass -EncodedCommand flags in the CommandLine field, which the dashboard's recent events table displays as a Critical severity detection.
 
-![Screenshot8](day%206%20screenshots/Screenshot8.png)
+![Screenshot8](Day6-Scrrenshots/Screenshot8.png)
 
 </details>
 
@@ -139,7 +139,7 @@ The timeline panel is the first thing an analyst looks at during an incident —
 **Screenshot 1 — Attack Event Timeline + Technique Frequency panels**
 > Dashboard showing Panel 1 (Attack Event Timeline) and Panel 2 (ATT&CK Technique Detection Frequency) together. The timeline shows 7 days of detection data with technique-labeled colored lines showing exactly when each ATT&CK technique was detected. Spikes on July 3, 7, and 9 correspond precisely to the attack simulation days, demonstrating that the detection pipeline correctly captures every simulated technique the moment it executes.
 
-![Screenshot1](day%206%20screenshots/Screenshot1.png)
+![Screenshot1](Day6-Scrrenshots/Screenshot1.png)
 
 </details>
 
@@ -189,7 +189,7 @@ Technique frequency tells the analyst which attack type is being used most aggre
 **Screenshot 1 — Panel 2 visible in combined dashboard screenshot**
 > ATT&CK Technique Detection Frequency bar chart showing T1082 System Discovery as the most detected technique with 23 events — reflecting multiple simulation runs across Days 3, 4, 5, and 6. All 5 detected techniques are visible with their relative frequencies, providing an immediate visual ranking of attacker behavior patterns across the lab's detection history.
 
-![Screenshot1](day%206%20screenshots/Screenshot1.png)
+![Screenshot1](Day6-Scrrenshots/Screenshot1.png)
 
 </details>
 
@@ -232,7 +232,7 @@ Severity distribution tells the analyst how dangerous the current attack phase i
 **Screenshot 2 — Severity Distribution + Top Suspicious Processes panels**
 > Dashboard showing Panel 3 (Detection Severity Distribution pie chart) and Panel 4 (Top Suspicious Processes bar chart) together. The severity pie shows the Critical vs High split across all detected techniques. The suspicious processes bar chart identifies whoami.exe as the most frequently detected suspicious process with 19 occurrences, followed by cmd.exe, powershell.exe, schtasks.exe, and systeminfo.exe — exactly the toolset an attacker uses during post-exploitation.
 
-![Screenshot2](day%206%20screenshots/Screenshot2.png)
+![Screenshot2](Day6-Scrrenshots/Screenshot2.png)
 
 </details>
 
@@ -322,7 +322,7 @@ This is the most operationally important panel for L1 SOC analysts — it shows 
 **Screenshot 3 — Recent Attack Events table fully visible**
 > Panel 5 showing the complete recent attack events table with all 5 columns visible: timestamp, ComputerName (SHreya.shreya.com), User (SHREYA\Shreya), Technique (MITRE ATT&CK mapped), and CommandLine (full attack command). Every row represents a real detection from the attack simulations. The T1059.001 PowerShell rows show the complete -EncodedCommand flag in the CommandLine column — the same evidence a real SOC analyst would use to investigate and escalate the alert.
 
-![Screenshot3](day%206%20screenshots/Screenshot3.png)
+![Screenshot3](Day6-Scrrenshots/Screenshot3.png)
 
 </details>
 
@@ -406,7 +406,7 @@ The event ID distribution panel is a **health check for the detection infrastruc
 **Screenshot 4 — Total Techniques counter + Sysmon Event ID Distribution**
 > Dashboard showing Panel 6 (Total ATT&CK Techniques Detected = 5) and Panel 7 (Sysmon Event ID Distribution pie chart) together. The bold "5" confirms five unique MITRE ATT&CK techniques were detected across the 7-day lab period. The Event ID distribution pie confirms all critical Sysmon monitoring channels are active — EventID 13 (Registry), EventID 1 (Process Creation), EventID 3 (Network Connection), EventID 22 (DNS Query), EventID 11 (File Created), EventID 8 (Injection), and EventID 7 (Image Load) all present and collecting data.
 
-![Screenshot4](day%206%20screenshots/Screenshot4.png)
+![Screenshot4](Day6-Scrrenshots/Screenshot4.png)
 
 </details>
 
@@ -421,7 +421,7 @@ The event ID distribution panel is a **health check for the detection infrastruc
 **Screenshot 5 — Complete MITRE ATT&CK Threat Detection Dashboard**
 > Full dashboard view showing all 7 panels together: Attack Event Timeline (line chart, Jul 3-10), ATT&CK Technique Frequency (bar chart, T1082 leads with 23 detections), Severity Distribution (pie, Critical vs High), Top Suspicious Processes (bar, whoami.exe dominant), Recent Attack Events (table with live CommandLine evidence), Total Techniques Counter (5), and Sysmon Event ID Distribution (pie, all event types confirmed active). This single dashboard provides a complete real-time picture of the threat detection lab — the same interface design used in enterprise SOC environments monitoring thousands of endpoints.
 
-![Screenshot5](day%206%20screenshots/Screenshot5.png)
+![Screenshot5](Day6-Scrrenshots/Screenshot5.png)
 
 </details>
 
